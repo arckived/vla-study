@@ -75,7 +75,7 @@ flowchart LR
 
 | Experiment | Success % (95% CI) | Notes |
 |---|---|---|
-| A: action expert only | pending | |
+| A: action expert only | 65.0 [55.3, 73.6] | 100 episodes · 20k steps · batch 32 · ~5 h on one L4 |
 | B: expert + language layers | pending | |
 | A + 8-bit weights | pending | |
 | A + 4-bit backbone only | pending | |

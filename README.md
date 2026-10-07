@@ -103,4 +103,4 @@ Simulation only; one benchmark suite (LIBERO-Object); one training seed per conf
 Built on [LeRobot](https://github.com/huggingface/lerobot), [SmolVLA](https://arxiv.org/abs/2506.01844), and [LIBERO](https://libero-project.github.io/).
 
 
-**Archita** · M.S. Artificial Intelligence, Northeastern University · archita.l@northeastern.edu · [LinkedIn](https://www.linkedin.com/in/YOUR-PROFILE)
+**Archita** · M.S. Artificial Intelligence, Northeastern University · archita.l@northeastern.edu · [LinkedIn](https://www.linkedin.com/in/archita01)

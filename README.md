@@ -2,14 +2,14 @@
 
 **Does a robot that follows instructions actually understand them?**
 
-`Status: complete` · `PyTorch` · `LeRobot` · `Hugging Face` · `LIBERO (MuJoCo)` · `SmolVLA`
+`PyTorch` · `LeRobot` · `Hugging Face` · `LIBERO (MuJoCo)` · `SmolVLA`
 
 <p align="center">
   <img src="assets/success.gif" width="32%" alt="Original instruction: success">
   <img src="assets/restruct_fail.gif" width="32%" alt="Reworded instruction: failure">
 </p>
 <p align="center"><em>Same model, same scene. Left: "pick up the ketchup and place it in the basket" (success). Right: "put the ketchup into the basket" (failure).</em></p>
--->
+
 
 ---
 

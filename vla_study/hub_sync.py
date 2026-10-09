@@ -1,19 +1,6 @@
 """Back up experiment outputs to a private Hugging Face Hub repo, restore them in a new
 session, and prune old checkpoints so the disk doesn't fill up.
 
-Why: Kaggle (and Colab) sessions end, and the local disk is wiped. The Hub repo is the
-permanent copy. Only lightweight things plus the LATEST complete checkpoint per
-experiment are uploaded, which is all you need to resume training.
-
-    python -m vla_study.hub_sync pull  --repo USER/vla-study-runs --outputs OUT
-    python -m vla_study.hub_sync push  --repo USER/vla-study-runs --outputs OUT
-    python -m vla_study.hub_sync loop  --repo USER/vla-study-runs --outputs OUT --every 900
-
-Auth: set the HF_TOKEN environment variable (a token with *write* access).
-Hub layout:
-    train/<exp>/checkpoint_last/...   latest complete checkpoint (pretrained_model + training_state)
-    train/<exp>/LAST_STEP.txt         its step number, e.g. 004000
-    eval/ data/ results/ *.txt *.log  everything else (small)
 """
 from __future__ import annotations
 

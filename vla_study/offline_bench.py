@@ -5,15 +5,6 @@ takes a long time. This script answers a cheaper question in minutes:
     "On real dataset frames, how far do the quantized policy's predicted action
      chunks drift from the full-precision policy's?"
 
-Use it to pick WHICH configurations are worth a full simulator evaluation.
-
-    python -m vla_study.offline_bench \
-        --policy-path outputs/train/expert_only/checkpoints/last/pretrained_model \
-        --configs "fp:none" "w8_all:8:" "w4_all:4:" "w4_vlm:4:vlm" "w4_expert:4:expert" \
-        --n-samples 200 --out outputs/offline_bench.json
-
-Config syntax  NAME:BITS:INCLUDE_REGEX   (BITS=none means full precision)
-
 IMPORTANT DETAIL - SmolVLA is stochastic. It generates actions with flow matching,
 starting from random noise. Two identical models give different outputs unless the
 noise is identical, so we reseed the RNG with the same value before every call.

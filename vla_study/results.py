@@ -1,6 +1,6 @@
 """Collect every lerobot-eval run under outputs/eval/ into one results table + chart.
 
-    python -m vla_study.results --eval-root outputs/eval --out results
+    python -m vla_study.results -eval-root outputs/eval -out results
 
 Writes results/results.md (paste into your README) and results/success_rates.png.
 

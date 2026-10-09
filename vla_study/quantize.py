@@ -1,21 +1,4 @@
-"""Simulated ("fake") weight-only quantization for any PyTorch model.
-
-Why simulated?
-    Real low-bit inference needs special kernels (bitsandbytes, torchao, TensorRT).
-    Those change speed and memory, but they also make it hard to isolate the one
-    question we care about first: *how much does rounding the weights to N bits
-    hurt the policy?* Fake quantization answers exactly that. We round each weight
-    to the nearest value representable with N bits, then store it back in the
-    original dtype. The model computes with the rounded weights, so any accuracy
-    loss you see is purely from quantization error.
-
-    Memory savings are reported as an *estimate* (what the weights would occupy if
-    stored at N bits plus their scales). Be explicit about this in your write-up.
-
-Scheme: symmetric, per-output-channel (one scale per row of W), optionally
-group-wise (one scale per `group_size` consecutive input weights in a row).
-Group-wise scales are standard for 4-bit (e.g. GPTQ/AWQ use group_size=128).
-"""
+"Simulated ("fake") weight-only quantization for any PyTorch model."
 from __future__ import annotations
 
 import re

@@ -1,15 +1,15 @@
 """Run LeRobot's normal closed-loop evaluation, with two optional interventions:
 
-  1. --quant-bits N        fake-quantize the policy's Linear weights right after loading
-  2. --paraphrase-file F   replace each task instruction with a paraphrase before the
+  1. -quant-bits N        fake-quantize the policy's Linear weights right after loading
+  2. -paraphrase-file F   replace each task instruction with a paraphrase before the
                            policy's preprocessor tokenizes it
 
-Everything after `--` is passed unchanged to lerobot-eval, e.g.
+Everything is passed unchanged to lerobot-eval, e.g.
 
-  python -m vla_study.patched_eval --quant-bits 4 --quant-include "vlm" -- \
-      --policy.path=outputs/train/expert_only/checkpoints/last/pretrained_model \
-      --env.type=libero --env.task=libero_object --eval.n_episodes=10 --eval.batch_size=1 \
-      --output_dir=outputs/eval/expert_only_q4_vlm
+  python -m vla_study.patched_eval -quant-bits 4 -quant-include "vlm"  \
+      -policy.path=outputs/train/expert_only/checkpoints/last/pretrained_model \
+      -env.type=libero -env.task=libero_object -eval.n_episodes=10 -eval.batch_size=1 \
+      -output_dir=outputs/eval/expert_only_q4_vlm
 
 How it works (monkey-patching):
     lerobot_eval does `from lerobot.policies.factory import make_policy, ...` at import

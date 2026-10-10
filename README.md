@@ -5,7 +5,7 @@
 `PyTorch` · `LeRobot` · `Hugging Face` · `LIBERO (MuJoCo)` · `SmolVLA`
 
 <p align="center">
-  <img src="assets/success.gif" width="32%" alt="Original instruction: success">
+  <img src="assets/eval_episode.gif" width="32%" alt="Original instruction: success">
   <img src="assets/restruct_fail.gif" width="32%" alt="Reworded instruction: failure">
 </p>
 <p align="center"><em>Same model, same scene. Left: "pick up the ketchup and place it in the basket" (success). Right: "put the ketchup into the basket" (failure).</em></p>
@@ -116,38 +116,12 @@ flowchart LR
 
 ---
 
-## Repository layout
-
-```
-scripts/               one shell script per experiment stage (00 → 07)
-vla_study/
-  patched_eval.py      evaluation wrapper: rewrites instructions (and optionally quantizes)
-  paraphrase.py        extracts LIBERO instructions; builds paraphrase and control sets
-  results.py           aggregates evaluations into tables with confidence intervals
-  hub_sync.py          checkpoint backup / restore / pruning via Hugging Face Hub
-  lerobot_compat.py    all LeRobot imports in one place
-  quantize.py          weight-quantization tooling (future work)
-  offline_bench.py     simulator-free quantization screening (future work)
-tests/                 unit tests (no GPU needed)
-vla_study_colab.ipynb  end-to-end notebook for Google Colab (L4 / A100)
-vla_study_kaggle.ipynb end-to-end notebook for Kaggle (T4)
-```
-
 ## Reproduce
 
 The easiest route is a notebook: open `vla_study_colab.ipynb` in Google Colab with an L4 or A100 GPU (or `vla_study_kaggle.ipynb` on Kaggle with a T4), set the stages in the CONFIG cell, and run all. Stages run in this order: `baseline_smoke` → `train_A` → `train_B` → `eval_trained` → `paraphrase_generate` → `paraphrase_eval`.
 
 On a machine with an NVIDIA GPU and Python 3.12+:
 
-```bash
-bash scripts/00_setup.sh                 # environment; records the LeRobot commit
-bash scripts/01_eval_baseline.sh         # sanity check with a pretrained checkpoint
-bash scripts/02_train_expert_only.sh     # model A
-bash scripts/03_train_expert_plus_vlm.sh # model B
-bash scripts/04_eval_trained.sh          # Experiment 1
-bash scripts/06_paraphrase_sweep.sh      # Experiment 2
-python -m pytest tests -q
-```
 
 ## Acknowledgements
 
@@ -157,10 +131,3 @@ Built on [LeRobot](https://github.com/huggingface/lerobot), [SmolVLA](https://ar
 
 **Archita** · M.S. Artificial Intelligence, Northeastern University · archita.l@northeastern.edu · [LinkedIn](https://www.linkedin.com/in/YOUR-PROFILE)
 
-<!--
-Adding the videos:
-1. On huggingface.co/arckive71/vla-study-runs, download one success video from eval/20_para_original/videos/
-   and the SAME task's video from eval/20_para_restruct/videos/ (same folder name, e.g. libero_object_4, same episode number).
-2. Convert each .mp4 to a GIF (e.g. ezgif.com/video-to-gif, width about 320 px, keep it under 5 MB).
-3. Save them in this repo as assets/success.gif and assets/restruct_fail.gif, then uncomment the block at the top.
--->
